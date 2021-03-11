@@ -1,0 +1,61 @@
+[[extend 'layout.html']]
+
+<div id="vue-target">
+  <div class="section">
+    <div class="players">
+      <a v-for="n in 9"
+         class="player"
+         @click="post_guess(n)">
+        <span v-if="(n - 1) < players.length">
+          Player {{ n }}
+        </span>
+        <div v-if="(n - 1) < players.length" 
+             class="player-hand">
+          <img class="player-card" 
+               v-bind:src="'images/' + players[n - 1].card1">
+          <img class="player-card" 
+               v-bind:src="'images/' + players[n - 1].card2">
+        </div>
+      </a>
+    </div>
+  </div>
+  
+  <br>
+  
+  <div class="section game-info">
+    <div class="lives">
+      <img v-for="n in lives"
+           class="live"
+           src="images/chipRedWhite.png">  
+    </div>
+    <div class="score">
+      ${{ score }} 
+    </div>
+    <div class="board-state">
+      {{ message }} 
+    </div>
+  </div>
+  
+  <br>
+  
+  <div class="section flex-centered">
+    <div class="board">
+      <div class="board-card-container" v-for="n in 5">
+        <img v-if="(n - 1) < board.length" 
+             class="board-card"
+             v-bind:src="'images/' + board[n - 1]"> 
+      </div>
+    </div>
+  </div>
+</div>
+
+[[block page_scripts]]
+<script>
+    let post_guess_url = "[[=XML(post_guess_url)]]";
+    let get_cards_url = "[[=XML(get_cards_url)]]";
+</script>
+<script src="js/index.js"></script>
+[[end]]
+
+
+

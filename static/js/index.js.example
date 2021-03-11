@@ -1,0 +1,154 @@
+let app = {};
+
+let init = (app) => {
+    app.data = {
+        page: "",
+        message: ""
+
+        board: [],
+        players: [],
+
+        lives: 3,
+        score: 0,
+    };
+
+    app.goto = (destination) => {
+        app.vue.page = destination;
+    };
+
+    app.enumerate = (a) => {
+        let k = 0;
+        a.map((e) => {e._idx = k++;});
+        return a;
+    };
+
+    app.set_rating = (r_idx, num_stars) => {
+        //console.log("set rating: row: ", r_idx, "| num_stars: ", num_stars );
+        let movie = app.vue.reviews[r_idx];
+        movie.rating = num_stars;
+        // Sets the stars on the server.
+        axios.post(set_rating_url, {movie_id: movie.movie_id, rating: num_stars});
+    };
+
+    app.show_all_favs = () => {
+        //console.log("show all favs");
+        axios.get(load_fav_url, {params: {"user_movie": "moana"}}).then( (result) => {
+            if (result.data.rows.length > 5) {
+                app.vue.is_hide_favs_opt = true;
+            }
+            if (result.data.rows.length == 0) {
+                app.vue.is_no_favs = true;
+            }
+            app.vue.favorites = app.vue.enumerate(result.data.rows);
+            app.vue.is_show_more_favs_opt = false;
+        });
+    };
+
+    app.add_friend = user_id => {
+        axios.post(add_friend_url, { user_requested: user_id });
+        location.reload();
+    };
+
+    app.accept_friend = user_id => {
+        axios.post(accept_friend_url, { requester: user_id });
+        location.reload();
+    };
+
+    app.methods = {
+        goto: app.goto,
+        enumerate: app.enumerate,
+        cine_link: app.cine_link,
+        set_rating: app.set_rating,
+        stars_out: app.stars_out,
+        stars_over: app.stars_over,
+        show_all_favs: app.show_all_favs,
+        hide_favs: app.hide_favs,
+        show_all_rec_people: app.show_all_rec_people,
+        hide_rec_people: app.hide_rec_people,
+        show_all_friends: app.show_all_friends,
+        hide_friends: app.hide_friends,
+        show_all_reviews: app.show_all_reviews,
+        hide_reviews: app.hide_reviews,
+        reload_rand_recs: app.reload_rand_recs,
+        add_friend: app.add_friend,
+        accept_friend: app.accept_friend
+    };
+
+    app.vue = new Vue({
+        el: "#vue-target",
+        data: app.data,
+        methods: app.methods
+    });
+
+    app.init = () => {
+        axios.get(load_rand_rec_url, {params: {"user_movie": "moana"}}).then( (result) => {
+            //console.log(result);
+            app.vue.rec_movies = app.vue.enumerate(result.data.rows);
+            app.vue.trailer_link = result.data.trailer;
+        });
+        axios.get(load_fav_url, {params: {"user_movie": "moana"}}).then( (result) => {
+            //console.log(result);
+            if (result.data.rows.length > 5) {
+                app.vue.is_show_more_favs_opt = true;
+                app.vue.is_hide_favs_opt =  false;
+                let result_rows = app.vue.enumerate(result.data.rows);
+                for (let i = 0; i < 5; i++) {
+                    app.vue.favorites[i] = result_rows[i];
+                }
+            } else {
+                app.vue.favorites = app.vue.enumerate(result.data.rows);
+            }
+            if (result.data.rows.length == 0) {
+                app.vue.is_no_favs = true;
+            }
+        });
+        axios.get(load_friends_url, {params: {"user_movie": "moana"}}).then( (result) => {
+            //console.log(result);
+            if (result.data.rows.length > 5) {
+                app.vue.is_show_more_friends_opt = true;
+                app.vue.is_hide_friends_opt =  false;
+                let result_rows = app.vue.enumerate(result.data.rows);
+                for (let i = 0; i < 5; i++) {
+                    app.vue.friends[i] = result_rows[i];
+                }
+            } else {
+                app.vue.friends = app.vue.enumerate(result.data.rows);
+            }
+        });
+        axios.get(load_rec_people_url, {params: {"user_movie": "moana"}}).then( (result) => {
+            if (result.data.rows.length > 5) {
+                app.vue.is_show_more_rec_people_opt = true;
+                app.vue.is_hide_rec_people_opt =  false;
+                let result_rows = app.vue.enumerate(result.data.rows);
+                for (let i = 0; i < 5; i++) {
+                    app.vue.rec_people[i] = result_rows[i];
+                }
+            } else {
+                app.vue.rec_people = app.vue.enumerate(result.data.rows);
+            }
+            if (result.data.rows.length == 0) {
+                app.vue.is_no_rec_people = true;
+            }
+        });
+        axios.get(load_reviews_url, {params: {"user_movie": "moana"}}).then( (result) => {
+            if (result.data.rows.length > 5) {
+                app.vue.is_show_more_reviews_opt = true;
+                app.vue.is_hide_reviews_opt =  false;
+                let result_rows = app.vue.enumerate(result.data.rows);
+                for (let i = 0; i < 5; i++) {
+                    app.vue.reviews[i] = result_rows[i];
+                }
+            } else {
+                app.vue.reviews = app.vue.enumerate(result.data.rows);
+            }
+            if (result.data.rows.length == 0) {
+                app.vue.is_no_reviews = true;
+            }
+        });
+    };
+
+    app.init();
+};
+
+init(app);
+
