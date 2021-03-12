@@ -1,13 +1,11 @@
-Make a diagram for the states and find good names for each.
-
-Add an animation to transition between guesses.
-
-Add an extra step so that the user gets to see the correct guess.
+Add the extra step so that the user gets to see the correct guess.
 Something like make a guess, get results, and then click on continue.
 
 Put a button to make guesses.
 
 Make a functionality to select multiple players (A must)
+
+Add an animation to transition between guesses.
 
 Double check that straights are working.
 

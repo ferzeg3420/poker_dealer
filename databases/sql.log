@@ -28,3 +28,12 @@ CREATE TABLE "user"(
     "winners" TEXT
 );
 success!
+timestamp: 2021-03-11T21:19:03.052007
+CREATE TABLE "leaderboard"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_name" CHAR(512),
+    "score" INTEGER,
+    "lives" INTEGER,
+    "time" INTEGER
+);
+success!
