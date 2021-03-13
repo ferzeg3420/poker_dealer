@@ -51,6 +51,7 @@ def index():
     return dict(
         post_guess_url=URL('check_guess'),
         get_cards_url=URL('deal_cards'),
+        get_init_game_state_url=URL('get_init_game_state')
     )
 
 @action('deal_cards')
@@ -114,6 +115,7 @@ def check():
         lives=lives,
         winners=[]
     )
+    print( "right answer: {}\n guess: {}".format(right_answer, guess))
 
     return dict(
         right_answer = right_answer,
@@ -122,6 +124,15 @@ def check():
         is_end = is_end 
     )
 
+@action('get_init_game_state')
+@action.uses(session, db)
+def get_init():
+    rows = db(db.user.user_id == session['uuid']).select()
+              
+    return dict(
+        lives = rows.first().lives,
+        running_score = rows.first().running_score
+    )
 
 # players = [ all_players[i] for i in range(0, num_players) ]
 # deck.deal_player_hands(players)

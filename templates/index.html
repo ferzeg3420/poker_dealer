@@ -5,7 +5,8 @@
     <div class="players">
       <a v-for="n in 9"
          class="player"
-         @click="post_guess(n)">
+         v-bind:class="{ is_player_selected: player_guesses[n] }"
+         @click="add_or_delete_guess(n)">
         <span v-if="(n - 1) < players.length">
           Player {{ n }}
         </span>
@@ -34,6 +35,14 @@
     <div class="board-state">
       {{ message }} 
     </div>
+    <button v-if="state === 'load' || state === 'make_guess'" 
+            @click="">  </button>
+
+    <button v-if="state === 'get_guess'" 
+            @click="goto_make_guess()"> make guess </button>
+
+    <button v-if="state === 'compare'" 
+            @click="goto_load()"> continue </button>
   </div>
   
   <br>
@@ -53,6 +62,7 @@
 <script>
     let post_guess_url = "[[=XML(post_guess_url)]]";
     let get_cards_url = "[[=XML(get_cards_url)]]";
+    let get_init_game_state_url = "[[=XML(get_init_game_state_url)]]";
 </script>
 <script src="js/index.js"></script>
 [[end]]

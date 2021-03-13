@@ -91,3 +91,7 @@
   width: 25px;
   height: auto;
 }
+
+.is_player_selected {
+  background-color: #209DCD !important;
+}
