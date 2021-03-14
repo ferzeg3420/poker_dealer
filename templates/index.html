@@ -28,9 +28,17 @@
       <img v-for="n in lives"
            class="live"
            src="images/chipRedWhite.png">  
+      <span class="inactive-lost-life"
+            v-bind:class="{active_lost_life: show_lives_decrement}">
+        -1
+      </span>
     </div>
     <div class="score">
       ${{ score }} 
+      <span class="inactive-made-cash"
+            v-bind:class="{active_made_cash: show_cash_increment}">
+        +5
+      </span>
     </div>
     <div class="board-state">
       {{ message }} 

@@ -35,18 +35,15 @@ let init = (app) => {
     app.post_guess = (guess_) => {
         axios.post(post_guess_url, { guess: guess_ })
              .then( (result) => {
-                 console.log(`app.post_guess: ${result.data.right_answer}`);
-                 console.log(`guess: ${guess_}`);
+                 if( result.data.lives < app.vue.lives ) {
+                    app.vue.show_lives_decrement = true;
+                 }
+                 else {
+                    app.vue.show_cash_increment = true;
+                 }
                  app.vue.right_answer = result.data.right_answer;
                  app.vue.lives = result.data.lives;
                  app.vue.score = result.data.score;
-                 // Delete the stuff below vvv
-                 if( result.data.is_end ) {
-                     setTimeout( () => {
-                        app.vue.score = 0;
-                        app.vue.lives = 3;
-                     }, 5000);
-                 }
              });
     };
 
@@ -60,24 +57,26 @@ let init = (app) => {
     };
 
     app.add_or_delete_guess = (player_number) => {
-       console.log("start of add or delete guess");
        if( app.vue.state != "get_guess" ) return;
-       console.log("add or delete guess after get_guess state check");
-       console.log(`---players.length: ${app.vue.players.length}`);
-       console.log(`---player number: ${player_number}`);
        if( player_number > 0 
            && player_number <= app.vue.players.length ) {
-         //app.vue.player_guesses[player_number] =
-         //   !app.vue.player_guesses[player_number];
             Vue.set(app.vue.player_guesses, 
                     player_number,
                     !app.vue.player_guesses[player_number]);
-         console.log(`player_guesses: [${app.vue.player_guesses}]`);
        }
     }
 
     app.goto_load = () => {
        app.vue.state = "load";
+       app.vue.show_lives_decrement = false;
+       app.vue.show_cash_increment = false;
+       // load live and money info
+       axios.get(get_init_game_state_url)
+            .then( (result) => {
+                app.vue.lives = result.data.lives;
+                app.vue.score = result.data.running_score;
+            });
+
        app.vue.get_cards(); 
        // card-flipping animation goes here
        app.vue.goto_get_guess();

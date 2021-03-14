@@ -1,22 +1,28 @@
-Add the extra step so that the user gets to see the correct guess.
-Something like make a guess, get results, and then click on continue.
+Make a cheasheet modal or sth
 
-Put a button to make guesses.
-
-Make a functionality to select multiple players (A must)
-
-Add an animation to transition between guesses.
+Make a leaderboard TOP 10 would be alright.
 
 Double check that straights are working.
 
-Make unit tests just for discovery of how to do that in Python
+Make a reset functionality?
+
+Make unit tests just for the discovery of how to do that in Python
+
+Get rid of the state string? 
 
 Make an intro animation. 
 
 Make an outro animation
 
-Make a reset functionality
+Add an animation to transition between guesses.
 
-Make a cheasheet modal or sth
+Improve the animation to show the lives decrease and the money increase.
 
-Make a leaderboard TOP 10 would be alright.
+Try to break the database by creating a new user.
+
+Fix safari's display problems
+
+What happens when you try to find something in the database that isn't there?
+
+Can you store something with the first()? 
+

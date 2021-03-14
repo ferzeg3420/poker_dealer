@@ -20,6 +20,7 @@ db.define_table(
     Field('running_score', "integer", default=0),
     Field('lives', "integer", default=3),
     Field('winners', 'list:integer'),
+    Field('is_solved', 'boolean', redifine=True),
 )
 
 db.define_table(

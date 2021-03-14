@@ -37,3 +37,6 @@ CREATE TABLE "leaderboard"(
     "time" INTEGER
 );
 success!
+timestamp: 2021-03-13T22:48:30.315174
+ALTER TABLE "user" ADD "is_solved" CHAR(1);
+success!

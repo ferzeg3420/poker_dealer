@@ -60,7 +60,11 @@ def deal():
 #    print("session type:", type(session))
 #    print("session :", vars(session))
     rows = db(db.user.user_id == session['uuid']).select()
+    print("deal_cards: rows:", rows)
+    print("deal_cards: rows.first():", rows.first())
     current_score = rows.first().running_score
+    if current_score is None:
+      print("current score is none. Everything should break now!") 
     res = game_service(current_score)
 
     winners = res.get('winners')
@@ -73,6 +77,7 @@ def deal():
         db.user.user_id == session['uuid'],
         user_id=session['uuid'],
         winners=winners,
+        is_solved=False,
     )
               
     return dict(
@@ -84,6 +89,10 @@ def deal():
 @action.uses(session, db)
 def check():
     rows = db(db.user.user_id == session['uuid']).select()
+    print( "check_guess: rows:", rows)
+    print( "check_guess: rows.first():", rows.first())
+    if rows.first().is_solved:
+      return
     right_answer = rows.first().winners
     lives = rows.first().lives
     ret_lives = lives
@@ -108,14 +117,16 @@ def check():
         score = 0
         is_end = True
 
+    #if is end, save ret score in leaderboard
+
     db.user.update_or_insert(
         db.user.user_id == session['uuid'],
         user_id=session['uuid'],
         running_score=score,
         lives=lives,
-        winners=[]
+        winners=[],
+        is_solved=True,
     )
-    print( "right answer: {}\n guess: {}".format(right_answer, guess))
 
     return dict(
         right_answer = right_answer,

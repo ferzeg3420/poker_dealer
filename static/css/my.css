@@ -92,6 +92,26 @@
   height: auto;
 }
 
+/* For some reason is-player-selected doesn't wanna work */
+/* whatever... I can use underscore instead */
 .is_player_selected {
   background-color: #209DCD !important;
+}
+
+.inactive-lost-life {
+  color: rgba(0,0,0,0);
+  font-size: 20px;
+}
+
+.inactive-made-cash {
+  color: rgba(0,0,0,0);
+}
+
+.active_lost_life {
+  color: red;
+  font-size: 20px;
+}
+
+.active_made_cash {
+  color: green;
 }
