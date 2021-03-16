@@ -1,6 +1,8 @@
-Make a cheasheet modal or sth
-
 Make a leaderboard TOP 10 would be alright.
+
+Color up the right guesses with green.
+Wrong guesses with red
+Missing guesses with blue? Maybe also add icons like check marks and xs for wrong. Missing would be a flag?
 
 Double check that straights are working.
 
@@ -26,3 +28,6 @@ What happens when you try to find something in the database that isn't there?
 
 Can you store something with the first()? 
 
+Turn the modal into a vue component
+
+Make the game accessible? Like add keys and TTS and more sounds

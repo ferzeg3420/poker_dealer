@@ -34,22 +34,30 @@
       </span>
     </div>
     <div class="score">
-      ${{ score }} 
+      <span class="is-success"> ${{ score }} </span>
       <span class="inactive-made-cash"
             v-bind:class="{active_made_cash: show_cash_increment}">
         +5
       </span>
     </div>
     <div class="board-state">
-      {{ message }} 
+      <span class="is-white">{{ message }} </span>
     </div>
-    <button v-if="state === 'load' || state === 'make_guess'" 
-            @click="">  </button>
+    <a class="help-button tooltip">
+      <i class="fas fa-question-circle tooltip-icon" 
+         id="myBtn"></i>
+      <span class="tooltiptext">Hand Rankings</span>
+    </a>
+    <button class="button is-fixed-width"
+            v-if="state === 'load' || state === 'make_guess'" 
+            @click=""> ... </button>
 
-    <button v-if="state === 'get_guess'" 
+    <button class="button is-fixed-width"
+            v-if="state === 'get_guess'" 
             @click="goto_make_guess()"> make guess </button>
 
-    <button v-if="state === 'compare'" 
+    <button class="button is-fixed-width"
+            v-if="state === 'compare'" 
             @click="goto_load()"> continue </button>
   </div>
   
@@ -66,6 +74,203 @@
   </div>
 </div>
 
+<div id="vue-target-hand-rankings" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Hand Rankings</h2>
+    <br>
+    <div class="hand-ranking-row">
+      <div class="hand-ranking-cards">
+        <img class="hand-ranking-card"
+             src="images/cardHeartsA.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardHeartsK.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardHeartsQ.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardHeartsJ.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardHearts10.png"> 
+      </div>
+      <div class="hand-ranking-info">
+         <span class="hand-ranking-name"> Royal Flush <span class="is-success">(Best)</span> </span>
+         <span class="hand-ranking-subtitle"> Five cards of the same suit: must go from 10 through A. </span>
+      </div>
+    </div>
+    <br>
+    <div class="hand-ranking-row">
+      <div class="hand-ranking-cards">
+        <img class="hand-ranking-card"
+             src="images/cardSpades8.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardSpades7.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardSpades6.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardSpades5.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardSpades4.png"> 
+      </div>
+      <div class="hand-ranking-info">
+         <span class="hand-ranking-name"> Straight Flush </span>
+         <span class="hand-ranking-subtitle"> Any five cards of the same suit in sequence. The sequence does not wrap around, so K, A, 2, 3, 4 is not a valid sequence.  </span>
+      </div>
+    </div>
+    <br>
+    <div class="hand-ranking-row">
+      <div class="hand-ranking-cards">
+        <img class="hand-ranking-card"
+             src="images/cardSpades8.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardHearts8.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardClubs8.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardDiamonds8.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardHearts4.png"> 
+      </div>
+      <div class="hand-ranking-info">
+         <span class="hand-ranking-name"> Four of a Kind </span>
+         <span class="hand-ranking-subtitle"> Four cards with the same value. The fifth card can be anything. </span>
+      </div>
+    </div>
+    <br>
+    <div class="hand-ranking-row">
+      <div class="hand-ranking-cards">
+        <img class="hand-ranking-card"
+             src="images/cardHearts3.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardDiamonds3.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardClubs3.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardHeartsJ.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardSpadesJ.png"> 
+      </div>
+      <div class="hand-ranking-info">
+         <span class="hand-ranking-name"> Full House </span>
+         <span class="hand-ranking-subtitle"> One set of three cards of the same value and another set of two other cards of the same value (but different from the first set). </span>
+      </div>
+    </div>
+    <br>
+    <div class="hand-ranking-row">
+      <div class="hand-ranking-cards">
+        <img class="hand-ranking-card"
+             src="images/cardClubs7.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardClubs3.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardClubsJ.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardClubsQ.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardClubsA.png"> 
+      </div>
+      <div class="hand-ranking-info">
+         <span class="hand-ranking-name"> Flush </span>
+         <span class="hand-ranking-subtitle"> Any five cards of the same suit. </span>
+      </div>
+    </div>
+    <br>
+    <div class="hand-ranking-row">
+      <div class="hand-ranking-cards">
+        <img class="hand-ranking-card"
+             src="images/cardHearts2.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardHearts3.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardClubs4.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardSpades5.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardDiamonds6.png"> 
+      </div>
+      <div class="hand-ranking-info">
+         <span class="hand-ranking-name"> Straight </span>
+         <span class="hand-ranking-subtitle"> Any sequence of values (does not wrap around so K, A, 2 and the like are invalid). </span>
+      </div>
+    </div>
+    <br>
+    <div class="hand-ranking-row">
+      <div class="hand-ranking-cards">
+        <img class="hand-ranking-card"
+             src="images/cardHearts5.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardDiamonds5.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardSpades5.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardClubsK.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardClubsA.png"> 
+      </div> 
+      <div class="hand-ranking-info">
+         <span class="hand-ranking-name"> Three of a Kind</span>
+         <span class="hand-ranking-subtitle"> Three cards of the same value. The last two can be anything. </span>
+      </div>
+    </div>
+    <br>
+    <div class="hand-ranking-row">
+      <div class="hand-ranking-cards">
+        <img class="hand-ranking-card"
+             src="images/cardHearts8.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardDiamonds8.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardClubs9.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardSpades9.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardHeartsA.png"> 
+      </div>
+      <div class="hand-ranking-info">
+         <span class="hand-ranking-name"> Two Pair </span>
+         <span class="hand-ranking-subtitle"> One set of two cards that have the same value and another set of two cards of the same value (but different value from the first set). </span>
+      </div>
+    </div>
+    <br>
+    <div class="hand-ranking-row">
+      <div class="hand-ranking-cards">
+        <img class="hand-ranking-card"
+             src="images/cardHearts8.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardClubs8.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardDiamondsK.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardHeartsQ.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardHeartsJ.png"> 
+      </div>
+      <div class="hand-ranking-info">
+         <span class="hand-ranking-name"> Pair </span>
+         <span class="hand-ranking-subtitle"> Two cards of the same value and the rest can be anything. </span>
+      </div>
+    </div>
+    <br>
+    <div class="hand-ranking-row">
+      <div class="hand-ranking-cards">
+        <img class="hand-ranking-card"
+             src="images/cardSpadesK.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardDiamondsJ.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardDiamonds9.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardClubs7.png"> 
+        <img class="hand-ranking-card"
+             src="images/cardHearts2.png"> 
+      </div>
+      <div class="hand-ranking-info">
+         <span class="hand-ranking-name"> High Card <span class="is-danger">(Worst)</span></span>
+         <span class="hand-ranking-subtitle"> Any five cards not in sequence and that don't have all the same suit. </span>
+      </div>
+    </div>
+  </div>
+</div>
+
 [[block page_scripts]]
 <script>
     let post_guess_url = "[[=XML(post_guess_url)]]";
@@ -73,6 +278,7 @@
     let get_init_game_state_url = "[[=XML(get_init_game_state_url)]]";
 </script>
 <script src="js/index.js"></script>
+<script src="js/hand_rankings.js"></script>
 [[end]]
 
 

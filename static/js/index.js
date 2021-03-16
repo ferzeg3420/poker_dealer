@@ -9,7 +9,7 @@ let app = {};
 
 let init = (app) => {
     app.data = {
-        message: "buffering...",
+        message: "Three of a Kind",
         state: "init", 
         right_answer: [],
 
@@ -68,6 +68,7 @@ let init = (app) => {
 
     app.goto_load = () => {
        app.vue.state = "load";
+       app.vue.message = "Shuffling the deck";
        app.vue.show_lives_decrement = false;
        app.vue.show_cash_increment = false;
        // load live and money info
@@ -84,10 +85,12 @@ let init = (app) => {
 
     // to enable the make veredict button
     app.goto_get_guess = () => {
+       app.vue.message = "Choose the best hands";
        app.vue.state = "get_guess";
     };
     
     app.goto_make_guess = () => {
+       app.vue.message = "Manager is checking";
        app.vue.state = "make_guess";
        guess = [];
        for( let i = 1; i <= MAX_PLAYERS; i++ ) {
@@ -106,6 +109,7 @@ let init = (app) => {
     // used to enable the continue button
     // and show -1 to lives or +5 to $
     app.goto_compare = () => {
+       app.vue.message = "Three of a kind";
        // +5 or -1 animation that fades out goes here
        for( let i = 0; i < MAX_PLAYERS; i++ ) {
            app.vue.right_guesses[i] = false;

@@ -1,16 +1,28 @@
 .button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
   background-color: #008ECC;
   color: white;
+
   padding-left: 10px;
   padding-right: 10px;
-  border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+
+  border-radius: 10px;
   box-shadow: 1px 1px 2px #555; 
 }
 
 .button:hover {
   background-color: #118FDD;
+}
+
+/* for the make_guess/continue button */
+.is-fixed-width {
+  width: 170px; 
 }
 
 .board {
@@ -114,4 +126,125 @@
 
 .active_made_cash {
   color: green;
+}
+
+.tooltip-icon {
+  color: white;
+  font-size: 20px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  background-color: rgba(155, 155, 155, .7);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  top: 15px;
+  left: 15px;
+
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hand-ranking-row {
+  display: flex;
+  width: 90%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.hand-ranking-cards {
+  display: flex;
+  width: 40%;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.hand-ranking-card {
+  margin-right: 5px;
+  width: 60px;
+  height: auto;
+}
+
+.hand-ranking-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  color: black;
+  font-size: 20px;
+}
+
+.hand-ranking-name {
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.hand-ranking-subtitle {
+  padding-left: 20px;
+  color: black;
+  font-size: 16px;
+  text-align: right;
+}
+
+.is-success {
+  color: green;
+}
+
+.is-danger {
+  color: red;
+}
+
+.is-white {
+  color: white;
 }
