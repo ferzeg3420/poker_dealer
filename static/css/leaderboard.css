@@ -1,0 +1,122 @@
+table {
+  border-radius: 6px;
+  background-color: #fe8a71;
+  width: 100%;
+}
+
+thead tr {
+}
+
+tbody tr {
+}
+
+thead th {
+}
+
+tbody td {
+  height: 7vh;
+}
+
+th {
+}
+
+td {
+  height: 7vh;
+  overflow: hidden;
+}
+
+tr:nth-child(even) {
+  background-color: #0e9aa7;
+}
+
+tr:nth-child(odd) {
+  background-color: #3da4ab;
+}
+
+.title-row {
+  width: 100%;
+}
+
+.title-header {
+  border-radius: 4px 4px 0 0;
+  border-width: 15px;
+  height: 10vh;
+  text-align: center;
+  font-size: 30px;
+  padding: 5vh;
+  background-color: #4a4e4d;
+  color: white;
+}
+
+.secondary-header {
+  background-color: #4a4e4d;
+  height: 5vh;
+}
+
+.secondary-header-place {
+  background-color: #4a4e4d;
+  color: white;
+  padding-top: 1.5%;
+  text-align: center;
+  width: 10%;
+}
+
+.secondary-header-name {
+  background-color: #4a4e4d;
+  color: white;
+  width: 50%;
+}
+
+.secondary-header-score {
+  background-color: #4a4e4d;
+  color: white;
+  width: 20%;
+  text-align: right;
+}
+
+.secondary-header-time {
+  background-color: #4a4e4d;
+  color: white;
+  width: 20%;
+  text-align: right;
+}
+
+.place-cell {
+  text-align: center;
+  padding-top: 1.5%;
+  text-align: center;
+  max-width: 5vw;
+}
+
+.name-cell {
+  padding-top: 1.5%;
+  max-width: 10vw;
+
+  /* in case the name is to long or the viewport small */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.score-cell {
+  text-align: right;
+  padding-top: 1.5%;
+  max-width: 5vw;
+
+  /* in case the score is to long or the viewport small */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.time-cell {
+  text-align: right;
+  padding-top: 1.5%;
+  max-width: 5vw;
+
+  /* in case the time is to long or the viewport small */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+

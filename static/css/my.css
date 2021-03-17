@@ -135,7 +135,6 @@
 
 .tooltip {
   position: relative;
-  display: inline-block;
 }
 
 .tooltip .tooltiptext {
@@ -146,11 +145,19 @@
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-  top: 15px;
-  left: 15px;
 
   position: absolute;
   z-index: 1;
+}
+
+.symbol-tooltip-offset {
+  top: 15px;
+  left: 15px;
+}
+
+.leaderboard-tooltip-offset {
+  top: 35px;
+  left: 15px;
 }
 
 .tooltip:hover .tooltiptext {

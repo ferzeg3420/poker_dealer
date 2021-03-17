@@ -130,16 +130,16 @@ p,li,button,fieldset,input,select,textarea,blockquote,table {
  ****************************************************/
 
 table {
-  border-collapse:collapse;
+  border-collapse: separate;
   width: 100%
 }
 
 tbody tr:hover {
-  background-color:#fbf6d9
+  background-color: #f6cd62;
 }
 
 thead tr {
-  background-color:#f1f1f1
+  //background-color:#f1f1f1;
 }
 
 tbody tr {

@@ -1,4 +1,4 @@
-Make a leaderboard TOP 10 would be alright.
+Add the code to include a score in the leaderboard.
 
 Color up the right guesses with green.
 Wrong guesses with red
@@ -15,6 +15,8 @@ Get rid of the state string?
 Make an intro animation. 
 
 Make an outro animation
+
+Fix the tooltip for the leaderboard
 
 Add an animation to transition between guesses.
 

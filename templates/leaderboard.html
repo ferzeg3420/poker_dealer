@@ -1,0 +1,42 @@
+[[extend 'layout.html']]
+
+
+<table>
+  <thead>
+    <tr class="title-row">
+      <th colspan="4" align="center" class="title-header">Leaderboard</th>
+    </tr>
+    <tr>
+      <th class="secondary-header secondary-header-place">
+        Place
+      </th>
+      <th class="secondary-header secondary-header-name">
+        Name
+      </th>
+      <th class="secondary-header secondary-header-score">
+        Score
+      </th>
+      <th class="secondary-header secondary-header-time">
+        Time
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    [[for i, p in enumerate(leaderboard, start=1):]]
+    <tr>
+      <td class="place-cell">
+        [[=i]]
+      </td>
+      <td class="name-cell">
+        [[=p.get('name')]]
+      </td>
+      <td class="score-cell">
+        [[=p.get('score')]]
+      </td>
+      <td class="time-cell">
+        [[=p.get('time')]]
+      </td>
+    </tr>
+    [[pass]]
+  </tbody>
+</table>

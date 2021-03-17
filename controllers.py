@@ -54,6 +54,25 @@ def index():
         get_init_game_state_url=URL('get_init_game_state')
     )
 
+@action('leaderboard')
+@action.uses('leaderboard.html', session, db)
+def leaderboard():
+    leaderboard = []
+    rows = db(db.leaderboard).select(
+        db.leaderboard.ALL,
+        orderby=db.leaderboard.score|~db.leaderboard.time,
+        limitby=(0, 10)
+    )
+    print(rows)
+    for i in range(1, 11):
+        leaderboard.append(
+            {'place': i,
+             'name': "Fernando",
+             'score': "100",
+             'time': "20"
+             })
+    return dict(leaderboard = leaderboard)
+
 @action('deal_cards')
 @action.uses(session, db)
 def deal():
