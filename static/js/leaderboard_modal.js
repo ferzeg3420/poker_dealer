@@ -1,11 +1,11 @@
 // Get the modal
-var modal = document.getElementById("hand-rankings-modal");
+var modal = document.getElementById("leaderboard-modal");
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
-var span = document.getElementById("rankings-close");
+var span = document.getElementById("leaderboard-close");
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {

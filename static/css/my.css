@@ -255,3 +255,14 @@
 .is-white {
   color: white;
 }
+
+#vue-target {
+  padding-top: 15px;
+  background-color: #119DCD;
+  height: 100%;
+}
+
+.leaderboard-page {
+  padding-top: 5vh;
+  height: 105vh;
+}

@@ -1,6 +1,7 @@
 [[extend 'layout.html']]
 
 
+<div class="leaderboard-page">
 <table>
   <thead>
     <tr class="title-row">
@@ -22,10 +23,10 @@
     </tr>
   </thead>
   <tbody>
-    [[for i, p in enumerate(leaderboard, start=1):]]
+    [[for p in leaderboard:]]
     <tr>
       <td class="place-cell">
-        [[=i]]
+        [[=p.get('place')]]
       </td>
       <td class="name-cell">
         [[=p.get('name')]]
@@ -40,3 +41,4 @@
     [[pass]]
   </tbody>
 </table>
+</div>

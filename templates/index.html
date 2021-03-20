@@ -43,6 +43,12 @@
     <div class="board-state">
       <span class="is-white">{{ message }} </span>
     </div>
+    <a href="[[=URL('leaderboard')]]"
+       target="_blank"
+       class="help-button tooltip">
+      <i class="fa fa-trophy tooltip-icon"></i>
+      <span class="tooltiptext symbol-tooltip-offset">Leaderboard</span>
+    </a>
     <a class="help-button tooltip">
       <i class="fas fa-question-circle tooltip-icon" 
          id="myBtn"></i>
@@ -58,7 +64,7 @@
 
     <button class="button is-fixed-width"
             v-if="state === 'compare'" 
-            @click="goto_load()"> continue </button>
+            @click="resolve_compare()"> continue </button>
   </div>
   
   <br>
@@ -72,11 +78,29 @@
       </div>
     </div>
   </div>
+  <div id="save-score-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" @click="close_score_save()">&times;</span>
+      <br>
+      <label>Name:</label>
+      <input type="text"
+             v-model="name_input" 
+             placeholder="Your name"
+             @keyup.enter="score_to_leaderboard()">
+      <h2>Score: <span> {{score}} </span></h2>
+      <h2>Time: <span> {{time}} </span></h2>
+      <br>
+      <button type="submit" @click="score_to_leaderboard()">Save your score</button>
+    </div>
+  </div>
 </div>
 
-<div id="vue-target-hand-rankings" class="modal">
+<div id="hand-rankings-modal" class="modal">
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <span id="rankings-close"
+          class="close">
+      &times;
+    </span>
     <h2>Hand Rankings</h2>
     <br>
     <div class="hand-ranking-row">
@@ -271,11 +295,14 @@
   </div>
 </div>
 
+
 [[block page_scripts]]
 <script>
     let post_guess_url = "[[=XML(post_guess_url)]]";
     let get_cards_url = "[[=XML(get_cards_url)]]";
     let get_init_game_state_url = "[[=XML(get_init_game_state_url)]]";
+    let score_to_leaderboard_url = "[[=XML(score_to_leaderboard_url)]]";
+    let get_game_time_url = "[[=XML(get_game_time_url)]]";
 </script>
 <script src="js/index.js"></script>
 <script src="js/hand_rankings.js"></script>

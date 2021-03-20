@@ -40,3 +40,37 @@ success!
 timestamp: 2021-03-13T22:48:30.315174
 ALTER TABLE "user" ADD "is_solved" CHAR(1);
 success!
+timestamp: 2021-03-18T18:27:57.145633
+ALTER TABLE "user" ADD "score_to_save" INTEGER;
+timestamp: 2021-03-18T18:27:57.147501
+ALTER TABLE "user" ADD "start_time" TIMESTAMP;
+timestamp: 2021-03-18T18:27:57.148785
+ALTER TABLE "user" ADD "end_time" TIMESTAMP;
+success!
+timestamp: 2021-03-18T18:27:57.152549
+ALTER TABLE "leaderboard" ADD "user_id" CHAR(512);
+success!
+timestamp: 2021-03-18T22:45:16.475290
+ALTER TABLE "user" ADD "is_end" CHAR(1);
+success!
+timestamp: 2021-03-18T23:16:04.815648
+ALTER TABLE "user" ADD "is_saved" CHAR(1);
+success!
+timestamp: 2021-03-19T02:16:33.466223
+ALTER TABLE "leaderboard" ADD "start_time" TIMESTAMP;
+timestamp: 2021-03-19T02:16:33.467806
+ALTER TABLE "leaderboard" ADD "end_time" TIMESTAMP;
+success!
+DROP TABLE "leaderboard";
+success!
+timestamp: 2021-03-19T02:19:37.715182
+CREATE TABLE "leaderboard"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" CHAR(512),
+    "user_name" CHAR(512),
+    "score" INTEGER,
+    "lives" INTEGER,
+    "start_time" TIMESTAMP,
+    "end_time" TIMESTAMP
+);
+success!
