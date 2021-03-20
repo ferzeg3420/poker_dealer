@@ -1,10 +1,11 @@
-Add the code to include a score in the leaderboard.
+Make the rigth hand appear as a message.
 
 Color up the right guesses with green.
 Wrong guesses with red
+
 Missing guesses with blue? Maybe also add icons like check marks and xs for wrong. Missing would be a flag?
 
-Double check that straights are working.
+Double check that straights are working. Also double check high cards
 
 Make a reset functionality?
 
