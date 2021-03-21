@@ -121,6 +121,7 @@ def deal():
     winners = res.get('winners')
     board = res.get('board')
     players = res.get('players')
+    best_hand = res.get('best_hand')
 
     db.user.update_or_insert(
         db.user.user_id == session['uuid'],
@@ -128,6 +129,7 @@ def deal():
         winners=winners,
         is_solved=False,
         is_saved=False,
+        best_hand_name=best_hand,
         start_time=start_time,
     )
               
@@ -151,6 +153,8 @@ def check():
     is_end = False
     end_time = rows.first().end_time
 
+    print("right answer:", right_answer)
+    print("right answer type:", type(right_answer))
     if len(right_answer) != len(guess) \
        or sorted(right_answer) != sorted(guess):
         lives -= 1
@@ -170,6 +174,7 @@ def check():
     if is_end:
         end_time = get_time()
 
+    best_hand = rows.first().best_hand_name
     db.user.update_or_insert(
         db.user.user_id == session['uuid'],
         user_id=session['uuid'],
@@ -184,10 +189,11 @@ def check():
     )
 
     return dict(
-        right_answer = right_answer,
+        right_answer=right_answer,
         lives = ret_lives,
         score = ret_score,
-        is_end = is_end 
+        is_end = is_end, 
+        best_hand = best_hand
     )
 
 @action('get_init_game_state')

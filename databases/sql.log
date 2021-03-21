@@ -74,3 +74,6 @@ CREATE TABLE "leaderboard"(
     "end_time" TIMESTAMP
 );
 success!
+timestamp: 2021-03-20T14:55:19.199996
+ALTER TABLE "user" ADD "best_hand_name" CHAR(512);
+success!

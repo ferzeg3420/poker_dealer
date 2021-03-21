@@ -9,7 +9,7 @@ let app = {};
 
 let init = (app) => {
     app.data = {
-        message: "Three of a Kind",
+        message: "hii",
         state: "init", 
         right_answer: [],
         is_end: false,
@@ -18,6 +18,7 @@ let init = (app) => {
 
         player_guesses: [],
         right_guesses: [],
+        colors_for_compare_state: [],
 
         show_cash_increment: false,
         show_lives_decrement: false,
@@ -36,18 +37,21 @@ let init = (app) => {
     };
 
     app.post_guess = (guess_) => {
+        console.log("post_guess");
         axios.post(post_guess_url, { guess: guess_ })
              .then( (result) => {
-                 if( result.data.lives < app.vue.lives ) {
-                     app.vue.show_lives_decrement = true;
-                 }
-                 else {
-                     app.vue.show_cash_increment = true;
-                 }
+                 app.vue.show_lives_decrement = 
+                     result.data.lives < app.vue.lives;
+                 app.vue.show_cash_increment =
+                     !(result.data.lives < app.vue.lives);
                  app.vue.is_end = result.data.is_end;
-                 app.vue.right_answer = result.data.right_answer;
+                 app.vue.right_answer =
+                     app.vue.enumerate(result.data.right_answer);
                  app.vue.lives = result.data.lives;
                  app.vue.score = result.data.score;
+                 app.vue.message = 
+                     result.data.best_hand;
+                 app.vue.goto_compare();
              });
     };
 
@@ -66,9 +70,10 @@ let init = (app) => {
     app.get_cards = () => {
         axios.get(get_cards_url)
              .then( (result) => {
-               app.vue.board = app.vue.enumerate(result.data.board);
-               app.vue.players = 
-                 app.vue.enumerate(result.data.players);
+                 app.vue.board =
+                     app.vue.enumerate(result.data.board);
+                 app.vue.players = 
+                     app.vue.enumerate(result.data.players);
              });
     };
 
@@ -103,6 +108,12 @@ let init = (app) => {
        app.vue.message = "Shuffling the deck";
        app.vue.show_lives_decrement = false;
        app.vue.show_cash_increment = false;
+       // Reset right guesses and player guesses
+       for( let i = 0; i <= MAX_PLAYERS; i++ ) {
+           Vue.set(app.vue.right_guesses, i, false);
+           Vue.set(app.vue.player_guesses, i, false);
+           Vue.set(app.vue.colors_for_compare_state, i, "");
+       }
        // load live and money info
        axios.get(get_init_game_state_url)
             .then( (result) => {
@@ -135,28 +146,45 @@ let init = (app) => {
        for( let i = 1; i <= MAX_PLAYERS; i++ ) {
          if( app.vue.player_guesses[i] ) {
            guess.push(i);
+           console.log("guess: ith player:", i);
          }
        }
-       // reset the player guesses array once the guesses are saved
-       for( let i = 1; i <= MAX_PLAYERS; i++ ) {
-         app.vue.player_guesses[i] = false;
-       }
+       // also goes to compare but I don't know why I can't make this async be synced
        app.vue.post_guess(guess);
-       app.vue.goto_compare();
     };
     
     // used to enable the continue button
     // and show -1 to lives or +5 to $
     app.goto_compare = () => {
-       app.vue.message = "Three of a kind";
-       // +5 or -1 animation that fades out goes here
-       for( let i = 0; i < MAX_PLAYERS; i++ ) {
-           app.vue.right_guesses[i] = false;
-       }
-       app.vue.state = "compare";
-       for( let i of app.vue.right_answer ) {
-           app.vue.right_guesses[i] = true;
-       }
+        app.vue.state = "compare";
+        // +5 or -1 animation that fades out goes here
+        for( let i = 0; i < app.vue.right_answer.length; i++ ) 
+        {
+            right_guess_index = app.vue.right_answer[i];
+            Vue.set(app.vue.right_guesses, 
+                    right_guess_index,
+                    true);
+        }
+        console.log("right guess:", app.vue.right_guesses);
+        console.log("player guess:", app.vue.player_guesses);
+        for(let i = 0; i <= app.vue.players.length; i++) {
+            let player_cell_color = "is-irrelevant";
+            if( app.vue.right_guesses[i] && app.vue.player_guesses[i] ) 
+            {
+                player_cell_color = "is-correct";
+            }
+            else if( app.vue.right_guesses[i] ) 
+            {
+                player_cell_color = "is-right-but-missed";
+            }
+            else if( app.vue.player_guesses[i] ) {
+                player_cell_color = "is-wrong";
+            }
+            Vue.set(app.vue.colors_for_compare_state, 
+                    i,
+                    player_cell_color);
+        }
+        console.log("colors for compare state:", app.vue.colors_for_compare_state);
     };
 
     app.resolve_compare = () => {
@@ -194,6 +222,8 @@ let init = (app) => {
        app.vue.player_guesses = [];
        for( let i = 0; i <= MAX_PLAYERS; i++) {
            app.vue.player_guesses.push(false);
+           app.vue.right_guesses.push(false);
+           app.vue.colors_for_compare_state.push("");
        }
        // load live and money info
        axios.get(get_init_game_state_url)

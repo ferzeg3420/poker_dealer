@@ -29,6 +29,7 @@ db.define_table(
     Field('is_end', 'boolean', default=False, redifine=True),
     Field('is_saved', 'boolean', default=False, redifine=True),
     Field('start_time', 'datetime', default=get_time, redifine=True),
+    Field('best_hand_name', default="Pair", redefine=True),
     Field('end_time', 'datetime', default=get_time, redifine=True),
 )
 

@@ -110,6 +110,22 @@
   background-color: #209DCD !important;
 }
 
+.is-irrelevant {
+  background-color: grey !important;
+}
+
+.is-correct {
+  background-color: green !important;
+}
+
+.is-right-but-missed {
+  background-color: navy !important;
+}
+
+.is-wrong {
+  background-color: red !important;
+}
+
 .inactive-lost-life {
   color: rgba(0,0,0,0);
   font-size: 20px;

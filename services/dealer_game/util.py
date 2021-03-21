@@ -30,6 +30,40 @@ suitToName = [
 #    else:
 #        return None
 
+ROYAL_FLUSH = 91413121110
+STRAIGHT_FLUSH = 90000000000
+FOUR_OF_A_KIND = 80000000000
+FULL_HOUSE = 70000000000 
+FLUSH = 60000000000 
+STRAIGHT = 50000000000
+THREE_OF_A_KIND = 40000000000 
+TWO_PAIR = 30000000000 
+PAIR = 20000000000 
+HIGH_CARD = 10000000000 
+
+def get_hand_name(hand_score):
+    if hand_score == ROYAL_FLUSH:
+        return "Royal flush"
+    if hand_score > STRAIGHT_FLUSH:
+        return "Straight Flush"
+    if hand_score > FOUR_OF_A_KIND:
+        return "Four of a Lind"
+    if hand_score > FULL_HOUSE:
+        return "Full House"
+    if hand_score > FLUSH:
+        return "Flush"
+    if hand_score > STRAIGHT:
+        return "Straight"
+    if hand_score > THREE_OF_A_KIND:
+        return "Three of a Kind"
+    if hand_score > TWO_PAIR:
+        return "Two Pair"
+    if hand_score > PAIR:
+        return "Pair"
+    if hand_score > HIGH_CARD:
+        return "High Card"
+    return "ERROR"
+
 def clear_screen():
     if is_windows:
         system('cls')
@@ -207,6 +241,17 @@ def save_score(user, play_time):
                             e.get("time")  + "\n")
     draw_scoreboard(entries)
     input()
+
+def formatted_best_hand(winners):
+    highest_score = 0
+    for w in winners:
+        player = w[0]
+        score = w[1]
+        if score > highest_score:
+            highest_score = score
+    print("israeli fiance:", get_hand_name(highest_score))
+    return get_hand_name(highest_score)
+     
 
 def formatted_winners(winners):
     winners_res = [ i[0].id for i in winners ]

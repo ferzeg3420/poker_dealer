@@ -5,7 +5,7 @@
     <div class="players">
       <a v-for="n in 9"
          class="player"
-         v-bind:class="{ is_player_selected: player_guesses[n] }"
+         v-bind:class="[{ is_player_selected: player_guesses[n] }, colors_for_compare_state[n]]"
          @click="add_or_delete_guess(n)">
         <span v-if="(n - 1) < players.length">
           Player {{ n }}

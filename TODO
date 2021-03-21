@@ -1,25 +1,20 @@
-Make the rigth hand appear as a message.
-
-Color up the right guesses with green.
-Wrong guesses with red
-
-Missing guesses with blue? Maybe also add icons like check marks and xs for wrong. Missing would be a flag?
+Maybe also add icons like check marks and xs for wrong. Missing would be a flag?
 
 Double check that straights are working. Also double check high cards
 
-Make a reset functionality?
+Add sounds for correct guesses. Wrong sounds are just annoying so don't add those.
+
+Make a reset functionality? I think the reload is enough
 
 Make unit tests just for the discovery of how to do that in Python
 
-Get rid of the state string? 
+Add a message string for errors like connection, server, etc.
 
-Make an intro animation. 
+Make an intro animation. That explains the game.
 
-Make an outro animation
+Make an outro animation. That makes you feel good. Like a prize
 
-Fix the tooltip for the leaderboard
-
-Add an animation to transition between guesses.
+Add an animation to transition between guesses. Like cards flipping
 
 Improve the animation to show the lives decrease and the money increase.
 
@@ -34,3 +29,7 @@ Can you store something with the first()?
 Turn the modal into a vue component
 
 Make the game accessible? Like add keys and TTS and more sounds
+
+Make the rigth hand appear as a message. PS: What did I mean by this? Was I high? Definitely misspelled
+
+Fix the tooltip for the leaderboard. PS: Did I mean the modal? Was I drinking?

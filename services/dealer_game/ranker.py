@@ -274,25 +274,25 @@ def get_hand_score(player, community_cards):
 
 def get_hand_name(hand_score):
     if hand_score == ROYAL_FLUSH:
-        return "royal flush"
+        return "Royal flush"
     if hand_score > STRAIGHT_FLUSH:
-        return "straight flush"
+        return "Straight Flush"
     if hand_score > FOUR_OF_A_KIND:
-        return "four of a kind"
+        return "Four of a Lind"
     if hand_score > FULL_HOUSE:
-        return "full house"
+        return "Full House"
     if hand_score > FLUSH:
-        return "flush"
+        return "Flush"
     if hand_score > STRAIGHT:
-        return "straight"
+        return "Straight"
     if hand_score > THREE_OF_A_KIND:
-        return "three of a kind"
+        return "Three of a Kind"
     if hand_score > TWO_PAIR:
-        return "two pair"
+        return "Two Pair"
     if hand_score > PAIR:
-        return "pair"
+        return "Pair"
     if hand_score > HIGH_CARD:
-        return "high card"
+        return "High Card"
     return "ERROR"
 
 def find_winners(players, community_cards):

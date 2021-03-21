@@ -54,5 +54,6 @@ def game_service(score):
         "players": formatted_players(players),
         "board": formatted_community_cards(community_cards),
         "winners": formatted_winners(winners),
+        "best_hand": formatted_best_hand(winners),
     }
     return res
