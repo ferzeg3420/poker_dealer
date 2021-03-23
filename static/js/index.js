@@ -22,6 +22,8 @@ let init = (app) => {
 
         show_cash_increment: false,
         show_lives_decrement: false,
+        
+        sound_sprite: "",
 
         board: [],
         players: [],
@@ -84,6 +86,8 @@ let init = (app) => {
             Vue.set(app.vue.player_guesses, 
                     player_number,
                     !app.vue.player_guesses[player_number]);
+            let sound = (app.vue.player_guesses[player_number] ? "on" : "off");
+            app.vue.play_sound(sound);
        }
     }
 
@@ -158,6 +162,7 @@ let init = (app) => {
     app.goto_compare = () => {
         app.vue.state = "compare";
         // +5 or -1 animation that fades out goes here
+        if ( app.vue.show_cash_increment ) { app.vue.play_sound('cash'); console.log("cash sound"); }
         for( let i = 0; i < app.vue.right_answer.length; i++ ) 
         {
             right_guess_index = app.vue.right_answer[i];
@@ -196,6 +201,10 @@ let init = (app) => {
       }
     }
 
+    app.play_sound = (sound_name) => {
+        app.vue.sound_sprite.play(sound_name);
+    }
+
     app.methods = {
         enumerate: app.enumerate,
         post_guess: app.post_guess,
@@ -210,6 +219,7 @@ let init = (app) => {
         goto_score_save: app.goto_score_save, 
         resolve_compare: app.resolve_compare, 
         get_game_time: app.get_game_time,
+        play_sound: app.play_sound,
     };
 
     app.vue = new Vue({
@@ -232,6 +242,14 @@ let init = (app) => {
                 app.vue.score = result.data.running_score;
             });
        app.vue.goto_load();
+       app.vue.sound_sprite = new Howl({
+           src: ['audio/sounds.webm', 'audio/sounds.mp3'],
+           sprite: {
+               cash: [0, 950],
+               on: [4110, 200],
+               off: [2400, 300]
+           }
+       });
     };
 
     app.init();
