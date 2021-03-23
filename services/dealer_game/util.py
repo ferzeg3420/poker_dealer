@@ -249,7 +249,6 @@ def formatted_best_hand(winners):
         score = w[1]
         if score > highest_score:
             highest_score = score
-    print("israeli fiance:", get_hand_name(highest_score))
     return get_hand_name(highest_score)
      
 

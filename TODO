@@ -1,12 +1,16 @@
-Maybe also add icons like check marks and xs for wrong. Missing would be a flag?
+Make sure names are sanitized by only allowing characters and space. Also get rid of table names
+
+Double check that the winning players are sorted in the client.
 
 Double check that straights are working. Also double check high cards
 
-Add sounds for correct guesses. Wrong sounds are just annoying so don't add those.
-
-Make a reset functionality? I think the reload is enough
+Maybe add icons like check marks and xs for wrong. Missing would be a flag?
 
 Make unit tests just for the discovery of how to do that in Python
+
+Make the game accessible? Like add keys and TTS and more sounds
+
+Make a reset functionality? I think the reload is enough
 
 Add a message string for errors like connection, server, etc.
 
@@ -27,8 +31,6 @@ What happens when you try to find something in the database that isn't there?
 Can you store something with the first()? 
 
 Turn the modal into a vue component
-
-Make the game accessible? Like add keys and TTS and more sounds
 
 Make the rigth hand appear as a message. PS: What did I mean by this? Was I high? Definitely misspelled
 
