@@ -1,11 +1,11 @@
 [[extend 'layout.html']]
 
 <div id="vue-target">
-  <div class="section">
+  <div class="players-section">
     <div class="players">
       <a v-for="n in 9"
          class="player"
-         v-bind:class="[{ is_player_selected: player_guesses[n] }, colors_for_compare_state[n]]"
+         v-bind:class="[{ is_player_selected: player_guesses[n] }, colors_for_compare_state[n], { is_player_inactive: (n - 1) >= players.length } ]"
          @click="add_or_delete_guess(n)">
         <span v-if="(n - 1) < players.length">
           Player {{ n }}
@@ -23,10 +23,10 @@
   
   <br>
   
-  <div class="section game-info">
+  <div class="game-info-section">
     <div class="lives">
       <img v-for="n in lives"
-           class="live"
+           class="life"
            src="images/chipRedWhite.png">  
       <span class="inactive-lost-life"
             v-bind:class="{active_lost_life: show_lives_decrement}">
@@ -69,7 +69,7 @@
   
   <br>
   
-  <div class="section flex-centered">
+  <div class="board-section">
     <div class="board">
       <div class="board-card-container" v-for="n in 5">
         <img v-if="(n - 1) < board.length" 
@@ -137,7 +137,7 @@
       </div>
       <div class="hand-ranking-info">
          <span class="hand-ranking-name"> Straight Flush </span>
-         <span class="hand-ranking-subtitle"> Any five cards of the same suit in sequence. The sequence does not wrap around, so K, A, 2, 3, 4 is not a valid sequence.  </span>
+         <span class="hand-ranking-subtitle"> Any five cards of the same suit in sequence. The sequence must not wrap around, so K, A, 2, 3, 4 for example, is not valid.  </span>
       </div>
     </div>
     <br>
@@ -156,7 +156,7 @@
       </div>
       <div class="hand-ranking-info">
          <span class="hand-ranking-name"> Four of a Kind </span>
-         <span class="hand-ranking-subtitle"> Four cards with the same value. The fifth card can be anything. </span>
+         <span class="hand-ranking-subtitle"> Four cards of the same value. The fifth is the card with highest value remaining. </span>
       </div>
     </div>
     <br>
@@ -201,19 +201,19 @@
     <div class="hand-ranking-row">
       <div class="hand-ranking-cards">
         <img class="hand-ranking-card"
+             src="images/cardHeartsA.png"> 
+        <img class="hand-ranking-card"
              src="images/cardHearts2.png"> 
         <img class="hand-ranking-card"
-             src="images/cardHearts3.png"> 
+             src="images/cardClubs3.png"> 
         <img class="hand-ranking-card"
-             src="images/cardClubs4.png"> 
+             src="images/cardSpades4.png"> 
         <img class="hand-ranking-card"
-             src="images/cardSpades5.png"> 
-        <img class="hand-ranking-card"
-             src="images/cardDiamonds6.png"> 
+             src="images/cardDiamonds5.png"> 
       </div>
       <div class="hand-ranking-info">
          <span class="hand-ranking-name"> Straight </span>
-         <span class="hand-ranking-subtitle"> Any sequence of values (does not wrap around so K, A, 2 and the like are invalid). </span>
+         <span class="hand-ranking-subtitle"> Any sequence of values (must not wrap around, so any sequences that contain K, A, and 2 are invalid). </span>
       </div>
     </div>
     <br>
@@ -232,7 +232,7 @@
       </div> 
       <div class="hand-ranking-info">
          <span class="hand-ranking-name"> Three of a Kind</span>
-         <span class="hand-ranking-subtitle"> Three cards of the same value. The last two can be anything. </span>
+         <span class="hand-ranking-subtitle"> Three cards of the same value. The last two are the highest-value cards remaining. </span>
       </div>
     </div>
     <br>
@@ -270,7 +270,7 @@
       </div>
       <div class="hand-ranking-info">
          <span class="hand-ranking-name"> Pair </span>
-         <span class="hand-ranking-subtitle"> Two cards of the same value and the rest can be anything. </span>
+         <span class="hand-ranking-subtitle"> Two cards of the same value and the rest are the highest-value cards remaining. </span>
       </div>
     </div>
     <br>
@@ -289,7 +289,7 @@
       </div>
       <div class="hand-ranking-info">
          <span class="hand-ranking-name"> High Card <span class="is-danger">(Worst)</span></span>
-         <span class="hand-ranking-subtitle"> Any five cards not in sequence and that don't have all the same suit. </span>
+         <span class="hand-ranking-subtitle"> Any five cards not in sequence and that don't all have the same suit. </span>
       </div>
     </div>
   </div>

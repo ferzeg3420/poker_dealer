@@ -27,16 +27,18 @@
 
 .board {
   display: flex;
-  width: 90%;
+  width: 100%;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-around;
 }
 
 .board-card {
   margin-right: 5px;
+  width: 100%;
 }
 
 .board-card-container {
+  width: 18%;
 }
 
 .player-card {
@@ -51,13 +53,23 @@
   align-items: center;
 }
 
-.flex-centered {
+.board-section {
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
+.players-section {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 .players {
+  width: 80%;
   display: flex;
   flex-wrap: wrap; 
   flex-direction: row;
@@ -68,8 +80,8 @@
 .player {
   border-radius: 15px;
   flex-basis: 45%;
-  height: 80px; 
-  margin-bottom: 10px;
+  height: 10vh; 
+  margin-bottom: 1.25vh;
   margin-left: 2.5%;
   margin-right: 2.5%;
   background-color: #0793C3;
@@ -89,25 +101,30 @@
   justify-content: flex-start;
 }
 
-.game-info {
-  margin-left: 10%;
-  margin-right: 10%;
+.game-info-section {
+  width: 78%;
+  position:relative;
+  left: 0.5%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.live {
+.life {
   margin-right: 5px;
   width: 25px;
   height: auto;
 }
 
 /* For some reason is-player-selected doesn't wanna work */
-/* whatever... I can use underscore instead */
+/* whatever... I am using underscore instead */
 .is_player_selected {
-  background-color: #209DCD !important;
+  background-color: #229FCF !important;
+}
+
+.is_player_inactive {
+  opacity: 0.55;
 }
 
 .is-irrelevant {
@@ -187,7 +204,7 @@
   z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
+  width: 100vw; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
@@ -200,7 +217,7 @@
   margin: 5% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 90vw; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
@@ -220,22 +237,22 @@
 
 .hand-ranking-row {
   display: flex;
-  width: 90%;
+  width: 85vw;
   flex-direction: row;
   justify-content: space-between;
 }
 
 .hand-ranking-cards {
   display: flex;
-  width: 40%;
+  width: 30vw;
   flex-direction: row;
   justify-content: flex-start;
 }
 
 .hand-ranking-card {
   margin-right: 5px;
-  width: 60px;
-  height: auto;
+  width: 5vw;
+  height: 8vw;
 }
 
 .hand-ranking-info {
@@ -274,11 +291,138 @@
 
 #vue-target {
   padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
   background-color: #119DCD;
-  height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .leaderboard-page {
   padding-top: 5vh;
   height: 105vh;
+}
+
+@media (max-width: 610px) {
+  .player {
+    padding-left: 15px;
+    padding-right: 15px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    color: black;
+    height: 100px;
+  }
+
+  .players {
+    width: 100vw;
+  }
+
+  .player-card {
+    margin-right: 5px;
+    width: auto;
+    height: 55px;
+  }
+
+  #vue-target {
+    height: 100%;
+    min-height: 100vh;
+  }
+
+  .board-section {
+    width: 90vw;
+  }
+
+  .players-section {
+    width: 90vw;
+  }
+
+  .game-info-section {
+    width: 90vw;
+    flex-wrap: wrap;
+  }
+
+  .lives {
+    width: 40%;
+  }
+
+  .score {
+    width: 15%;
+  }
+
+  .board-state {
+    width: 45%;
+    margin-bottom: 10px;
+  }
+
+  .board-card {
+    margin-right: 1px;
+  }
+
+  .hand-ranking-info {
+    align-items: flex-start;
+    color: black;
+    font-size: 14px;
+  }
+
+  .hand-ranking-subtitle {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .hand-ranking-name {
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 290px) {
+  .player-card {
+    height: auto;
+    width: 45%;
+  }
+}
+
+@media (min-width: 2000px) {
+  .modal-content {
+    width: 50vw;
+  }
+
+  .hand-ranking-row {
+    line-height: 1.6;
+    width: 45vw;
+  }
+
+  .hand-ranking-cards {
+    width: 10vw;
+  }
+
+  .hand-ranking-card {
+    width: 2vw;
+    height: 3.5vw;
+  }
+
+  .hand-ranking-info {
+    padding-left: 20px;
+    font-size: 30px;
+  }
+
+  .hand-ranking-name {
+    font-size: 35px;
+  }
+
+  .hand-ranking-subtitle {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 45px;
+  }
 }
