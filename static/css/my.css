@@ -136,11 +136,11 @@
 }
 
 .is-right-but-missed {
-  background-color: #1034a6 !important;
+  background-color: #45b6fe !important;
 }
 
 .is-wrong {
-  background-color: red !important;
+  background-color: #ff6961 !important;
 }
 
 .inactive-lost-life {
