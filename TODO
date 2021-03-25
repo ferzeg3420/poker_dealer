@@ -1,10 +1,13 @@
-Make sure names are sanitized by only allowing characters and space. Also get rid of table names
-
-Double check that the winning players are sorted in the client.
+Add state checks in the server. The state should match that of the client.
 
 Double check that straights are working. Also double check high cards
 
 Maybe add icons like check marks and xs for wrong. Missing would be a flag?
+
+Add an animation to transition between guesses. Like cards flipping
+
+Add the ability to use keys to play the game. 1,2,...,9 to select players, enter to click the button,
+    l for leaderboard, h for the rankings, esc closes out of stuff.
 
 Make unit tests just for the discovery of how to do that in Python
 
@@ -17,8 +20,6 @@ Add a message string for errors like connection, server, etc.
 Make an intro animation. That explains the game.
 
 Make an outro animation. That makes you feel good. Like a prize
-
-Add an animation to transition between guesses. Like cards flipping
 
 Improve the animation to show the lives decrease and the money increase.
 

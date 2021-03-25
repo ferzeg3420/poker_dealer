@@ -128,15 +128,15 @@
 }
 
 .is-irrelevant {
-  background-color: grey !important;
+  background-color: #c3c3c7 !important;
 }
 
 .is-correct {
-  background-color: green !important;
+  background-color: #50c878 !important;
 }
 
 .is-right-but-missed {
-  background-color: navy !important;
+  background-color: #1034a6 !important;
 }
 
 .is-wrong {
