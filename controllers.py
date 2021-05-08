@@ -108,6 +108,8 @@ def sanitize_leaderboard_name(name):
 def calculate_points(lives, cash, game_duration):
     # add bonus points if cash is max
     points_from_cash = cash * POINTS_PER_CASH
+    bonus_points_from_lives = 0
+    bonus_points_from_time = 0
     if cash == MAX_CASH:
         bonus_points_from_lives = lives * BONUS_PER_LIFE
         if game_duration < two_hours:
@@ -142,7 +144,7 @@ def leaderboard():
     leaderboard = []
     rows = db(db.leaderboard).select(
         db.leaderboard.ALL,
-        orderby=db.leaderboard.score,
+        orderby=~db.leaderboard.score,
     ).as_list()
     j = 0
     for i in rows:
